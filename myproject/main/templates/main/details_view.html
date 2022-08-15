@@ -6,7 +6,7 @@
 
 {% block content%}
     <div class="features">
-        <h1>{{ Post.title }}</h1><br>
+        <h1>{{ Post.name }}</h1><br>
         {{ Post.task|safe }}<br>
         <a href="{%url "post-delete" Post.id %}" class="btn btn-danger">Удалить запись</a>
         <a href="{%url "post-update" Post.id %}" class="btn btn-info">Изменить</a>

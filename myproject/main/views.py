@@ -1,58 +1,65 @@
 from distutils.log import error
 from multiprocessing import context
+from os import name
 from bson import is_valid
 from django.shortcuts import render, redirect
 from .models import Task
-from .forms import TaskForm
+from .forms import add_TaskForm
 from django.views.generic import DetailView, UpdateView, DeleteView
-from django_summernote.widgets import SummernoteWidget
 
 
 
+#Просмотр страницы с записью 
 class PostDetailView(DetailView):
     model = Task
     template_name = 'main/details_view.html'
     context_object_name = 'Post'
 
-
+#Редактирование существующей страницы 
 class PostUpdateView(UpdateView):
     model = Task
     template_name = 'main/edit.html'
-    form_class = TaskForm
+    form_class = add_TaskForm
     
-
+#Удаление записи 
 class PostDeleteView(DeleteView):
     model = Task
     template_name = 'main/delete_post.html'
     success_url = "/"
     context_object_name = 'Post'
 
-
+#Главная страница
 def index(request):
-    tasks = Task.objects.order_by('id')
-    return render(request, 'main/index.html', {"title": "Главная страница сайта", "tasks": tasks})
+    names = Task.objects.order_by('id')
+    return render(request, 'main/index.html', {"Title": "Главная страница сайта", "names": names})
 
-
+#Страница "О проекте"
 def about(request):
     return render(request, 'main/about.html')
 
-
-def create(request):
+#Создать запись
+def add_child(request):
     error_task = ""
     if request.method == "POST":
-        form = TaskForm(request.POST)
+        form = add_TaskForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("home")
         else:
             error_task = 'Error type data'
 
-    form = TaskForm()
+    form = add_TaskForm()
     
     context = {
         'form': form,
         'error': error_task
     }
 
+    return render(request, 'main/create_child.html', context)
+#Отобразить дерево категорий
+def show_genres(request):
+    return render(request, "main/list_posts.html", {'genres': Task.objects.all()})
 
-    return render(request, 'main/create.html', context)
+#Получить категории
+def get_category(request):
+    pass

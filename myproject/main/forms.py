@@ -1,23 +1,23 @@
 from .models import Task
 from django.forms import ModelForm, TextInput, Textarea
-from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from django_summernote.widgets import SummernoteWidget
 
-
-
-class TaskForm(ModelForm):
+#Форма создания записи(текстовый редактор, присвоение иерархии в дереве)
+class add_TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ["title", "task"]
+        fields = ["name", "task", "parent"]
         widgets = {
-            "title": TextInput(attrs={
+            "name": TextInput(attrs={
                 'class': 'form-control', 
                 'placeholder': 'Write name',
             }),
+
             "task": SummernoteWidget(attrs={
                 'summernote': {
                     'airMode': False,
                     'width': '100%',
-                    'height': '800',
+                    'height': '600',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -31,8 +31,6 @@ class TaskForm(ModelForm):
                 },
 
             }),
+            
 
         }
-
-
-

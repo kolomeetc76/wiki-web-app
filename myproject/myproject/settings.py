@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'mptt',
 ]
 
 INSTALLED_APPS += ('django_summernote', )
