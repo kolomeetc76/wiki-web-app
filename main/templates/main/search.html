@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Страница поиска записей
+{% endblock %}
+
+{% block content %}
+<form method="GET" action="search">
+    <input type="text" name="q" placeholder="Введите поисковый запрос">
+    <button type="submit">Найти</button>
+  </form>  
+{% endblock %}

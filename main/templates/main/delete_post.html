@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title%}
+Удалить запись
+{% endblock %}
+
+{% block content%}
+    <h1>Удалить: {{ Post.name }} ?</h1>
+    <form method="post" class="form-control"> 
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить запись</button>
+        <span>{{ error_task }}</span>
+    </form>
+{% endblock %}

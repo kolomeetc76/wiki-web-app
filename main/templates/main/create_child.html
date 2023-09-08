@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title%}
+Создать статью
+{% endblock %}
+
+{% block content%}
+    <h1>Создать статью</h1>
+    <form method="post" class="form-control"> 
+        {% csrf_token %}
+        <label><h4>Название статьи</h4></label><br>
+        {{ form.name }}<br>
+        <label><h4>Категория</h4></label><br>
+        {{ form.parent|safe }}<br>
+        <label><h3>Текст статьи</h3></label><br>
+        {{ form.task|safe }}<br>
+        
+        <button type="submit" class="btn btn-success">Создать</button>
+        <span>{{ error_task }}</span>
+    </form>
+{% endblock %}

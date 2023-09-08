@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block title%}
+База знаний
+{% endblock %}
+
+{% block content%}
+{% load mptt_tags %}
+
+<ul>
+    {% recursetree genres %}
+        <li>
+            {% if not node.is_leaf_node %}
+                <details>
+                    <summary>{{ node.name }}</summary>
+                    <ul>
+                        {{ children }}
+                    </ul>
+                </details>
+            {% else %}
+                <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+{% endblock %} 
