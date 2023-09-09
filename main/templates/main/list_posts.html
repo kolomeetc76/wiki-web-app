@@ -7,19 +7,32 @@
 {% load mptt_tags %}
 
 <ul>
+        <h3>Список страниц</h3>
     {% recursetree genres %}
         <li>
             {% if not node.is_leaf_node %}
-                <details>
-                    <summary>{{ node.name }}</summary>
+                <details class="nav-linnk">
+                    <summary class="nav-linnk">{{ node.name }}</summary>
                     <ul>
                         {{ children }}
                     </ul>
                 </details>
             {% else %}
-                <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+                <a href="{{ node.get_absolute_url }}" class="nav-linnk">{{ node.name }}</a>
             {% endif %}
         </li>
     {% endrecursetree %}
 </ul>
+<style>
+    details .nav-link {
+        border: 1px solid;
+        box-shadow: black 2px 2px 10px;
+        border-radius: 15px;
+        margin: 1em 0;
+    }
+    
+    details .nav-link:hover {
+        box-shadow: none;
+    }
+    </style>
 {% endblock %} 
