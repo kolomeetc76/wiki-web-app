@@ -25,3 +25,5 @@ class Task(MPTTModel):
     class MPTTMeta:
         order_insertion_by = ['name']
 
+class Auth:
+    pass

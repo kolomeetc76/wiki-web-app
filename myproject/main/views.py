@@ -1,7 +1,6 @@
-from distutils.log import error
 from multiprocessing import context
 from os import name
-from bson import is_valid
+# from bson import is_valid
 from django.shortcuts import render, redirect
 from .models import Task
 from .forms import add_TaskForm
