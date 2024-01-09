@@ -33,7 +33,7 @@ class PostDeleteView(DeleteView):
 #Главная страница
 @login_required
 def index(request):
-    names = Task.objects.order_by('id')
+    names = Task.objects.order_by('-updated_at')
     return render(request, 'main/index.html', {"Title": "Главная страница сайта", "names": names})
 
 #Страница "О проекте"
@@ -79,3 +79,11 @@ def lk(request):
 
 def login(request):
     return render(request, "registration/login.html")
+
+#Дата создания записи 
+# def created_post(request):
+#     your_model_instance = Task.objects.get(pk=1)
+#     context = {
+#         'task': your_model_instance,
+#     }
+#     return render(request, 'your_template.html', context)

@@ -7,8 +7,27 @@
 {% block content%}
     <div class="features">
         <h1>{{ Post.name }}</h1><br>
+        <p class="date-updated-post">Отредактировано: {{ Post.updated_at.date }}, {{ Post.updated_at.time }}</p>
         {{ Post.task|safe }}<br>
+        <p class="date-create-post">Создано: {{ Post.created_at.date }}, {{ Post.created_at.time }}</p>
         <a href="{%url "post-delete" Post.id %}" class="btn btn-danger">Удалить запись</a>
         <a href="{%url "post-update" Post.id %}" class="btn btn-info">Изменить</a>
     </div>
+    <style>
+        .date-create-post {
+            color: rgba(98, 98, 98, 0.953);
+            font-size: small;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        .date-updated-post {
+            color: rgba(59, 58, 58, 0.953);
+            font-size: small;
+        }
+        .features {
+            position: relative;
+        }
+    </style>
+    
 {% endblock %}

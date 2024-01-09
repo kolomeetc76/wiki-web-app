@@ -1,23 +1,23 @@
-
 {% block title %}
 Авторизация
 {% endblock %}
+
 {% block content %}
 
   {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
+    <p>Ошибка ввода логина или пароля. Пожалуйста, повторите попытку.</p>
   {% endif %}
 
   {% if next %}
     {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
+      <p>Ваша учетная запись не имеет доступа к этой странице. Для продолжения,
+      пожалуйста, войдите под учетной записью, которая имеет доступ.</p>
     {% else %}
-      <p>Please login to see this page.</p>
+      <p>Пожалуйста, войдите, чтобы увидеть эту страницу.</p>
     {% endif %}
   {% endif %}
 
-  <form method="post" action="{% url 'login' %}">
+  <form class="auth-form" method="post" action="{% url 'login' %}" >
     {% csrf_token %}
     <table>
       <tr>
@@ -29,11 +29,16 @@
         <td>{{ form.password }}</td>
       </tr>
     </table>
-    <input type="submit" value="login">
+    <input type="submit" value="Войти">
     <input type="hidden" name="next" value="{{ next }}">
   </form>
 
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
+  {# Предполагается, что вы настроили представление password_reset в вашем URLconf #}
+  <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+  <style>
+    .auth-form {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 {% endblock %}

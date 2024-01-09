@@ -10,7 +10,8 @@
         {% for i in names %}
             <div class="alert alert-warning mt-2">
                 <!-- <h3>{{ i.name }}</h3> -->
-                <a href="{%url 'post-datail' i.id %}"><h3>{{ i.name }}</h3></a>
+                <a href="{%url 'post-datail' i.id %}"><h3>{{ i.name }}</h3>
+                <p>{{ i.updated_at.date }} {{ i.updated_at.time}}</p></a>
                 
                 <!-- <a href="{%url 'post-datail' i.id %}" class="btn btn-warning">Подробнее...</a> -->
             </div>
