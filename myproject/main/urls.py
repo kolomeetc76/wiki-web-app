@@ -11,4 +11,10 @@ urlpatterns = [
     path('post-list', views.show_genres, name='wiki'),
     path('post-list/<int:pk>', views.get_category, name='category'),
     path('create-child', views.add_child, name = "create_child"),
+    path('cab', views.lk, name="cab"),
+    path('login/', views.login, name="login",)
+]
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

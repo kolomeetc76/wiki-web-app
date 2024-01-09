@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Личный кабинет
+{% endblock %}
+
+{% block content%}
+{% csrf_token %}
+<ul class="sidebar-nav">
+    {% if user.is_authenticated %}
+    <li>User: {{ user.get_username }}</li>
+    <li>Дата регистрации: {{ user.date_joined }}</li>
+ 
+    {% comment %} <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li> {% endcomment %}
+ 
+    <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+    {% endif %}
+  </ul>
+{% endblock %}

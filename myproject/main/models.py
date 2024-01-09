@@ -1,6 +1,7 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
 
 
 #простейшая модель для создания записи, поле title не обязательно
@@ -24,6 +25,3 @@ class Task(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['name']
-
-class Auth:
-    pass
