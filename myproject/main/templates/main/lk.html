@@ -8,7 +8,7 @@
 {% csrf_token %}
 <ul class="sidebar-nav">
     {% if user.is_authenticated %}
-    <li>User: {{ user.get_username }}</li>
+    <li>Пользователь: {{ user.get_username }}</li>
     <li>Дата регистрации: {{ user.date_joined }}</li>
  
     {% comment %} <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li> {% endcomment %}

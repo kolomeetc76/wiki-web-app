@@ -10,8 +10,8 @@
         <p class="date-updated-post">Отредактировано: {{ Post.updated_at.date }}, {{ Post.updated_at.time }}</p>
         {{ Post.task|safe }}<br>
         <p class="date-create-post">Создано: {{ Post.created_at.date }}, {{ Post.created_at.time }}</p>
-        <a href="{%url "post-delete" Post.id %}" class="btn btn-danger">Удалить запись</a>
-        <a href="{%url "post-update" Post.id %}" class="btn btn-info">Изменить</a>
+        <a style="margin-bottom: 2vh;" href="{%url "post-delete" Post.id %}" class="btn btn-danger">Удалить запись</a>
+        <a style="margin-bottom: 2vh;" href="{%url "post-update" Post.id %}" class="btn btn-info">Изменить</a>
     </div>
     <style>
         .date-create-post {
