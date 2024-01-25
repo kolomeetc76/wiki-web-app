@@ -34,3 +34,8 @@ class add_TaskForm(ModelForm):
             
 
         }
+
+from django import forms
+
+class SearchForm(forms.Form):
+    query = forms.CharField()

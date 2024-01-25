@@ -1,6 +1,7 @@
 from django.urls import path, include
 from . import views
-
+from django.urls import path
+from .views import search
 
 urlpatterns = [
     path('', views.index, name = "home"),
@@ -12,7 +13,9 @@ urlpatterns = [
     path('post-list/<int:pk>', views.get_category, name='category'),
     path('create-child', views.add_child, name = "create_child"),
     path('cab', views.lk, name="cab"),
-    path('login/', views.login, name="login",)
+    path('login/', views.login, name="login"),
+    path('search/', views.search, name='search'),
+    
 ]
 
 urlpatterns += [

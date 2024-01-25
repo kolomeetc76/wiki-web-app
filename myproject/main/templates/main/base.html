@@ -25,6 +25,17 @@
     <div class="container">
       {% block  content %}{% endblock %} 
     </div>
+    <script>
+      function toggleChildren(arrow) {
+          var childrenList = arrow.parentElement.querySelector(".children");
+          if (childrenList) {
+              childrenList.style.display = childrenList.style.display === "none" ? "block" : "none";
+              arrow.innerHTML = childrenList.style.display === "block" ? "&#9660;" : "&#9654;"; // Изменение стрелки
+          }
+      }
+  </script>
+  
+  
 </body>
 </html>
 

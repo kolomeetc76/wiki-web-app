@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% block title%}
+Поиск
+{% endblock %}
+
+{% block content%}
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+{% for hit in hits %}
+<div class="alert alert-warning mt-2">
+    <a href="{%url 'post-datail' hit.id %}"><h2>{{ hit.name }}</h2></a>
+    <p>{{ hit.updated_at.date }} {{ hit.updated_at.time}}</p></a>
+</div>
+{% endfor %}
+{% endblock %}

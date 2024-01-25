@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+{% block title%}
+База знаний
+{% endblock %}
+
+{% block content%}
+<form action="{% url 'search' %}" method="get">
+    <input type="text" name="query" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+<style>
+    .toggle-arrow {
+        cursor: pointer;
+        color: blue;
+        display: inline-block;
+        width: 15px; /* Ширина для стрелки */
+    }
+    .children {
+        padding-left: 20px; /* Отступ для дочерних элементов */
+        
+    }
+    ul {
+        list-style-type: none; /* Убирает маркеры у всех списков */
+        padding-left: 0; /* Убирает отступ слева */
+    }
+</style>
+
+
+{% load mptt_tags %}
+{% load mptt_tags %}
+<ul>
+    {% recursetree genres %}
+        <li>
+            {% if not node.is_leaf_node %}
+                <!-- Стрелочка для раскрытия списка -->
+                <span class="toggle-arrow" onclick="toggleChildren(this)">&#9654;</span>
+            {% else %}
+                <!-- Пустой span для выравнивания листовых узлов -->
+                <span class="toggle-arrow"></span>
+            {% endif %}
+            
+            <!-- Ссылка на элемент -->
+            <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+
+            {% if not node.is_leaf_node %}
+                <ul class="children" style="display: none;">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+
+{% endblock %}
+

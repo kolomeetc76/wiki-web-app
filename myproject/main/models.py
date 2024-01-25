@@ -10,7 +10,7 @@ class Task(MPTTModel):
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     # title = models.CharField(max_length=50)
     task = models.TextField('Описание')
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
     
     

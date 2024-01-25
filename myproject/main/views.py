@@ -7,7 +7,9 @@ from .forms import add_TaskForm
 from django.views.generic import DetailView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
+from django.shortcuts import render
+from .forms import SearchForm
+from .documents import YourModelDocument
 
 
 
@@ -65,7 +67,7 @@ def add_child(request):
 #Отобразить дерево категорий
 @login_required
 def show_genres(request):
-    return render(request, "main/list_posts.html", {'genres': Task.objects.all()})
+    return render(request, "main/post_list.html", {'genres': Task.objects.all()})
 
 #Получить категории
 @login_required
@@ -87,3 +89,20 @@ def login(request):
 #         'task': your_model_instance,
 #     }
 #     return render(request, 'your_template.html', context)
+
+# Функция посиска Эластиксерч
+from django.http import HttpResponse
+@login_required
+def search(request):
+    form = SearchForm(request.GET)
+    hits = []
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        try:
+            search = YourModelDocument.search().query("match", name=query)
+            hits = search.to_queryset()
+        except Exception as e:
+            # Здесь можно заменить на более продвинутое логирование
+            print(f"Ошибка поиска: {e}")
+            return HttpResponse("Произошла ошибка при выполнении поиска", status=500)
+    return render(request, 'main/search_results.html', {'form': form, 'hits': hits})

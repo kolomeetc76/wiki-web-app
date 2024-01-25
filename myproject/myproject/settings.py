@@ -1,9 +1,19 @@
 from pathlib import Path
 import os
+from elasticsearch import Elasticsearch
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Указываем адрес Elasticsearch
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'http://localhost:9200'  # Укажите соответствующий адрес и порт Elasticsearch
+    },
+}
+
+# Создаем объект Elasticsearch для использования в вашем приложении
+es = Elasticsearch(hosts='http://localhost:9200')  # Укажите соответствующий адрес и порт Elasticsearch
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -14,7 +24,7 @@ SECRET_KEY = 'django-insecure-0t$uu-6zc!4-id0-l)m-pf7cu*w(z%yvm$^loa_wi9rg!*-1^o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost',]
 
 
 # Application definition
@@ -28,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'mptt',
+    'django_elasticsearch_dsl',
 ]
 
 INSTALLED_APPS += ('django_summernote', )
